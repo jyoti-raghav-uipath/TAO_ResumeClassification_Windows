@@ -1,0 +1,8 @@
+{
+  "mockedWorkflows": [
+    {
+      "mockFilePath": "Mocks\\ML Skill_mock.xaml",
+      "sourceWorkflowPath": "ML Skill.xaml"
+    }
+  ]
+}

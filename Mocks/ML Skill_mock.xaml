@@ -1,0 +1,452 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ML_Skill" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:d="clr-namespace:DU_PII_Redaction;assembly=DataService.DU_PII_Redaction" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:uda="clr-namespace:UiPath.DataService.Activities;assembly=UiPath.DataService.Activities.Core" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:um="clr-namespace:UiPath.MLServices;assembly=UiPath.MLServices" xmlns:uma="clr-namespace:UiPath.MLServices.Activities;assembly=UiPath.MLServices.Activities" xmlns:utam="clr-namespace:UiPath.Testing.Activities.Mocks;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_boolClassified" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_PDFFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_index" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_text" Type="InArgument(x:String)" />
+    <x:Property Name="Email" Type="InArgument(x:String)" />
+    <x:Property Name="out_Output" Type="OutArgument(x:String)" />
+  </x:Members>
+  <this:ML_Skill.Email>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ML_Skill.Email>
+  <sap:VirtualizedContainerService.HintSize>857.3333333333334,2730</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="86">
+      <x:String>DU_PII_Redaction</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>UiPath.Core.Activities.Storage</x:String>
+      <x:String>UiPath.DataService.Activities</x:String>
+      <x:String>UiPath.DataService.Definition</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.MLServices</x:String>
+      <x:String>UiPath.MLServices.Activities</x:String>
+      <x:String>UiPath.MLServices.Enums</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.Testing.Activities.Mocks</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="114">
+      <AssemblyReference>DataService.DU_PII_Redaction</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.DataService.Activities.Core</AssemblyReference>
+      <AssemblyReference>UiPath.DataService.Definition</AssemblyReference>
+      <AssemblyReference>UiPath.MLServices</AssemblyReference>
+      <AssemblyReference>UiPath.MLServices.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="606,2665.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="JsonResponse" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_SkillResult" />
+      <Variable x:TypeArguments="x:String" Name="Name" />
+      <Variable x:TypeArguments="d:TAO" Default="[new TAO]" Name="TAORecord" />
+      <Variable x:TypeArguments="d:TAO" Default="[new TAO]" Name="TAORecordOutput" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="544,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Starting ML skill&quot;]" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="544,25.333333333333332" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,196" sap2010:WorkflowViewState.IdRef="Sequence_28">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign DisplayName="Assign Email" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[Email]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[string.Empty]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <Assign DisplayName="Assign Name" sap:VirtualizedContainerService.HintSize="544,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_6">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Name]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[string.Empty]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <uma:MLSkills ApiKey="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Name="{x:Null}" NumberOfRetries="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SkillURL="{x:Null}" StatusCode="{x:Null}" TimeOutMs="{x:Null}" Connection="Robot" DisplayName="MLSkill" ExternApiFileType="JSON" sap:VirtualizedContainerService.HintSize="544,414.6666666666667" sap2010:WorkflowViewState.IdRef="MLSkills_1" Item="[in_text]" JsonResponse="[JsonResponse]" NextPageNum="2" RefreshList="False" TotalCount="1">
+      <uma:MLSkills.MLSkillList>
+        <scg:List x:TypeArguments="um:MLSkill" Capacity="4">
+          <x:Reference>__ReferenceID0</x:Reference>
+        </scg:List>
+      </uma:MLSkills.MLSkillList>
+      <uma:MLSkills.SelectedMLSkill>
+        <um:MLSkill x:Name="__ReferenceID0" AccessUri="https://ai-uipath-we-b.deskover.com/mlskills/a17c9af1-091d-4dd2-9cec-ed787c6601c8/cc6eaf2e-9ce9-48c9-acd1-b47913b37d45/cluster-b/hr-test" AccountId="a17c9af1-091d-4dd2-9cec-ed787c6601c8" Description="" Id="2ee39659-a3cc-4c51-97db-02380edd6271" InputDescription="Text in English from which entities will be extracted." InputType="JSON" Name="HR_Test" OutputDescription="List of named entities in the text. Each elemnt in the list has the text that was recognized, the starting and ending positions (character-wise) of the text, the type of named entity and the confidence in that prediction. For example: [ {&quot;text&quot;: &quot;George Washington&quot;,&quot;start_pos&quot;: 0,&quot;end_pos&quot;: 17,&quot;type&quot;: &quot;PER&quot;,&quot;confidence&quot;: 0.96469810605049133 }, {&quot;text&quot;: &quot;New York City&quot;,&quot;start_pos&quot;: 26,&quot;end_pos&quot;: 39,&quot;type&quot;: &quot;LOC&quot;,&quot;confidence&quot;: 0.944470226764679 }, {&quot;text&quot;: &quot;Congress&quot;,&quot;start_pos&quot;: 51,&quot;end_pos&quot;: 59,&quot;type&quot;: &quot;ORG&quot;,&quot;confidence&quot;: 0.99666249752044678 }]" ProjectId="34f61c5c-4a0f-470a-90bb-2c77ccf5dcbb" TenantId="cc6eaf2e-9ce9-48c9-acd1-b47913b37d45" />
+      </uma:MLSkills.SelectedMLSkill>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uma:MLSkills>
+    <Assign DisplayName="Assign datatable" sap:VirtualizedContainerService.HintSize="544,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[dt_SkillResult]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable">[JsonConvert.DeserializeObject(of datatable)(JsonResponse)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_SkillResult]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="544,547.3333333333334" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+          </ActivityAction.Argument>
+          <If Condition="[CurrentRow(3).ToString.ToLower.Contains(&quot;per&quot;)]" DisplayName="If Person" sap:VirtualizedContainerService.HintSize="510,422" sap2010:WorkflowViewState.IdRef="If_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Sequence Person" sap:VirtualizedContainerService.HintSize="476,238" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign DisplayName="Assign Name 2" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_7">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Name]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[CurrentRow(0).ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:Break DisplayName="Break 1" sap:VirtualizedContainerService.HintSize="434,25.333333333333332" sap2010:WorkflowViewState.IdRef="Break_4" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="" sap2010:WorkflowViewState.IdRef="Sequence_24" />
+            </If.Else>
+          </If>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEachRow>
+    <ui:CommentOut DisplayName="Comment Out- Candidate Email Id extraction" sap:VirtualizedContainerService.HintSize="544,216" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,136" sap2010:WorkflowViewState.IdRef="Sequence_27">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each To find Email" sap:VirtualizedContainerService.HintSize="388,25.333333333333332" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[in_text.Split(Environment.NewLine.ToArray,StringSplitOptions.RemoveEmptyEntries)]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="item1" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Body Email 1" sap:VirtualizedContainerService.HintSize="586,290.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each To find Email 2" sap:VirtualizedContainerService.HintSize="544,138" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[item1.ToString.Split(&quot; &quot;C)]">
+                    <ui:ForEach.Body>
+                      <ActivityAction x:TypeArguments="x:Object">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
+                        </ActivityAction.Argument>
+                        <If Condition="[item.ToString.Contains(&quot;@&quot;) and item.ToString.ToLower.Contains(&quot;.com&quot;)]" DisplayName="If Email check" sap:VirtualizedContainerService.HintSize="510,422" sap2010:WorkflowViewState.IdRef="If_6">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence DisplayName="Sequence 2" sap:VirtualizedContainerService.HintSize="476,238" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign DisplayName="Assign Email 2" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_8">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[Email]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[item.ToString]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <ui:Break DisplayName="Break 2" sap:VirtualizedContainerService.HintSize="434,25.333333333333332" sap2010:WorkflowViewState.IdRef="Break_5" />
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence DisplayName="" sap2010:WorkflowViewState.IdRef="Sequence_25" />
+                          </If.Else>
+                        </If>
+                      </ActivityAction>
+                    </ui:ForEach.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ForEach>
+                  <If Condition="[not String.IsNullOrEmpty(email)]" DisplayName="If Email empty" sap:VirtualizedContainerService.HintSize="544,25.333333333333332" sap2010:WorkflowViewState.IdRef="If_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <ui:Break sap:VirtualizedContainerService.HintSize="334,25.333333333333332" sap2010:WorkflowViewState.IdRef="Break_6" />
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="" sap2010:WorkflowViewState.IdRef="Sequence_26" />
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEach>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <utam:MockActivity DisplayName="Mock Multiple Assign" MockedActivityIdRef="MultipleAssign_1">
+      <utam:MockActivity.MockedActivity>
+        <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="544,223.33333333333334" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+          <ui:MultipleAssign.AssignOperations>
+            <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:String">[TAORecord.CandidateName]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:String">[Name]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:String">[TAORecord.JobID]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:String">["J00" + Convert.ToString(new Random().Next(1,100))]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:String">[TAORecord.QualificationStatus]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:String">[if(in_boolClassified,"Qualified","Further review required")]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:String">[TAORecord.CandidateEmail]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:String">[Email]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:String">[TAORecord.InterviewStatus]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:String">[if(in_boolClassified,"Pending","NA")]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+            </scg:List>
+          </ui:MultipleAssign.AssignOperations>
+        </ui:MultipleAssign>
+      </utam:MockActivity.MockedActivity>
+      <Sequence sap2010:WorkflowViewState.IdRef="" />
+    </utam:MockActivity>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="544,25.333333333333332" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,454.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_23">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <uda:UploadFileToRecordField x:TypeArguments="d:TAO" ContinueOnError="False" DisplayName="Upload File to Record Field" ExpansionDepth="2" Field="Resume" FilePath="[in_PDFFilePath]" sap:VirtualizedContainerService.HintSize="388,344" sap2010:WorkflowViewState.IdRef="UploadFileToRecordField`1_3" OutputEntity="[TAORecordOutput]" RecordId="[TAORecordOutput.Id]" TimeoutInMs="30000" />
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <If Condition="[not String.IsNullOrEmpty(Name)]" sap:VirtualizedContainerService.HintSize="544,427.3333333333333" sap2010:WorkflowViewState.IdRef="If_7">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="300,243.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_29">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <utam:MockActivity DisplayName="Mock Create Entity Record" MockedActivityIdRef="CreateEntityRecord`1_2">
+            <utam:MockActivity.MockedActivity>
+              <uda:CreateEntityRecord x:TypeArguments="d:TAO" ContinueOnError="False" DisplayName="Create Entity Record" ExpansionDepth="2" sap:VirtualizedContainerService.HintSize="258,25.333333333333332" sap2010:WorkflowViewState.IdRef="CreateEntityRecord`1_2" InputEntity="[TAORecord]" OutputEntity="[TAORecordOutput]" TimeoutInMs="30000">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uda:CreateEntityRecord>
+            </utam:MockActivity.MockedActivity>
+            <Sequence sap2010:WorkflowViewState.IdRef="" />
+          </utam:MockActivity>
+          <uda:UploadFileToRecordField x:TypeArguments="d:TAO" ContinueOnError="False" DisplayName="Upload File to Record Field" ExpansionDepth="2" Field="Resume1" FilePath="[in_PDFFilePath]" sap:VirtualizedContainerService.HintSize="258,25.333333333333332" sap2010:WorkflowViewState.IdRef="UploadFileToRecordField`1_4" OutputEntity="[TAORecordOutput]" RecordId="[TAORecordOutput.Id]" TimeoutInMs="30000">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </uda:UploadFileToRecordField>
+          <utam:MockActivity DisplayName="Mock Upload Storage File" MockedActivityIdRef="UploadStorageFile_1">
+            <utam:MockActivity.MockedActivity>
+              <ucas:UploadStorageFile TimeoutMS="{x:Null}" Destination="[Name+&quot;.pdf&quot;]" DisplayName="Upload Storage File" sap:VirtualizedContainerService.HintSize="258,25.333333333333332" sap2010:WorkflowViewState.IdRef="UploadStorageFile_1" Path="[in_PDFFilePath]" StorageBucketName="Resumes">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ucas:UploadStorageFile>
+            </utam:MockActivity.MockedActivity>
+            <Sequence sap:VirtualizedContainerService.HintSize="304,154" sap2010:WorkflowViewState.IdRef="">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_9">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_Output]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">Completed</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </utam:MockActivity>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_30" />
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>

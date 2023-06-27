@@ -1,0 +1,82 @@
+{
+  "name": "TAO_ResumeClassification_Windows",
+  "description": "Blank Process",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.DataService.Activities": "[21.10.1]",
+    "UiPath.MLServices.Activities": "[2.0.0]",
+    "UiPath.PDF.Activities": "[3.14.1]",
+    "UiPath.System.Activities": "[21.10.4]",
+    "UiPath.Testing.Activities": "[22.4.3]",
+    "UiPathTeam.PDFRedaction.Activities": "[2.0.22]"
+  },
+  "webServices": [],
+  "entitiesStores": [
+    {
+      "serviceDocument": ".entities/EntitiesStore.json",
+      "tenantName": "DemoRepository",
+      "namespace": "DU_PII_Redaction",
+      "uniqueReference": "WJ7sgAEU1+0XI5GqUEt8aVXm/GKo7iRGCsEz52gjj2s="
+    }
+  ],
+  "schemaVersion": "4.0",
+  "studioVersion": "21.4.3.0",
+  "projectVersion": "1.0.15",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": true,
+    "isAttended": false,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "workflowSerialization": "DataContract",
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": false,
+    "pipType": "ChildSession"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "059bf2e2-f73b-4f86-8191-c5aa28525dd0",
+        "testCaseType": "TestCase",
+        "fileName": "Test Cases\\TC_MLSkill.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "2622093b-95e8-47ae-a0d1-156427fe51fe",
+        "testCaseType": "TestCase",
+        "fileName": "Test Cases\\TC_ResumeClassify.xaml"
+      }
+    ],
+    "modernBehavior": false
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "04a0489f-22d3-417a-8d0d-9db7664d1cb1",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Windows"
+}
